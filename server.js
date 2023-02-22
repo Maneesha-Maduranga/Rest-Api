@@ -7,6 +7,8 @@ const app = express()
 const {connectDb} = require('./config/db')
 //connectDb()
 
+
+
 app.listen(3000, () => {
     console.log('Server Is Running')
 })
