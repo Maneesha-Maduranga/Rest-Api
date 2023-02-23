@@ -3,6 +3,7 @@ const { Phone, validateData } = require("../models/Phone");
 const customError = require("../utils/customError");
 
 const getAllPhone = async (req, res) => {
+
   const phone = await Phone.findAll();
   res.status(200).json({
     sucess: true,
@@ -30,7 +31,7 @@ const createPhone = async (req, res) => {
 
   const { error, value } = validateData(title, description, price, category);
 
-  // console.log(error,value);
+  
 
   if (error) {
     throw new customError(error.message, 400);
@@ -44,7 +45,6 @@ const createPhone = async (req, res) => {
 };
 
 const updatePhone = async (req, res) => {
-
   const { id } = req.params;
 
   let phone = await Phone.findByPk(id);
@@ -68,7 +68,6 @@ const updatePhone = async (req, res) => {
         id: id,
       },
     }
-
   );
 
   res.status(200).json({
@@ -77,23 +76,23 @@ const updatePhone = async (req, res) => {
 };
 
 const deletePhone = async (req, res) => {
-    const { id } = req.params;
+  const { id } = req.params;
 
-    let phone = await Phone.findByPk(id);
-    if (!phone) {
-      throw new customError("No Phone with Given Id", 400);
-    }
+  let phone = await Phone.findByPk(id);
+  if (!phone) {
+    throw new customError("No Phone with Given Id", 400);
+  }
 
-    await Phone.destroy({
-        where: {
-          id: id
-        }
-      })
+  await Phone.destroy({
+    where: {
+      id: id,
+    },
+  });
 
-    res.status(200).json({
-        sucess:true,
-        data:{}
-    })
+  res.status(200).json({
+    sucess: true,
+    data: {},
+  });
 };
 
 module.exports = {
