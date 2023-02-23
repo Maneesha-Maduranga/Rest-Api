@@ -1,6 +1,8 @@
 const express = require('express')
 const router = express.Router()
 
+const {getAllPhone,getSinglePhone,createPhone,updatePhone,deletePhone} = require('../controllers/phone')
+
 //Get All Phones
 router.get('/', getAllPhone)
 
