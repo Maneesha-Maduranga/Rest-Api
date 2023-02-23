@@ -25,12 +25,12 @@ const Phone = sequelize.define("Phone", {
   },
 });
 
-const validateDate = (title, description, price, category) => {
+const validateData = (title, description, price, category) => {
   const schema = Joi.object({
     title: Joi.string().required(),
     description: Joi.string().min(3).max(50),
     price: Joi.number().required(),
-    category: Joi.string().allow(["Apple", "Samsung", "Huawei"]),
+    category: Joi.string()
   });
 
   return schema.validate({title,description,price,category})
@@ -44,5 +44,5 @@ const createTable = async () => {
 module.exports = {
   Phone,
   createTable,
-  validateDate
+  validateData
 };
